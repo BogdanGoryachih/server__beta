@@ -6,6 +6,7 @@ import {
 	NotFoundException,
 } from '@nestjs/common'
 import { CategoryService } from 'src/category/category.service'
+import { NaukService } from 'src/nauk/nauk.service'
 import { TransactionService } from 'src/transaction/transaction.service'
 
 @Injectable()
@@ -13,6 +14,7 @@ export class AuthorGuard implements CanActivate {
 	constructor(
 		private readonly transactionService: TransactionService,
 		private readonly categoryService: CategoryService,
+		private readonly naukService: NaukService,
 	) {}
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -27,6 +29,9 @@ export class AuthorGuard implements CanActivate {
 				break
 			case 'category':
 				entity = await this.categoryService.findOne(id)
+				break
+			case 'nauk':
+				entity = await this.naukService.findOne(id)
 				break
 			default:
 				throw new NotFoundException('Something went wrong...')

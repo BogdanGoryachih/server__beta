@@ -1,3 +1,4 @@
+import { Nauk } from 'src/nauk/entities/nauk.entity'
 import { Transaction } from 'src/transaction/entities/transaction.entity'
 import { User } from 'src/user/entities/user.entity'
 import {
@@ -27,9 +28,14 @@ export class Category {
 	@JoinColumn({ name: 'transaction_id' })
 	transactions: Transaction[]
 
+	@OneToMany(() => Nauk, (nauk) => nauk.category)
+	@JoinColumn({ name: 'transaction_id' })
+	nauk: Transaction[]
+
 	@CreateDateColumn()
 	createdAt: Date
 
 	@UpdateDateColumn()
 	updatedAt: Date
+	length: any
 }

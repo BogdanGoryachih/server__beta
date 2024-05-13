@@ -1,4 +1,5 @@
 import { Category } from 'src/category/entities/category.entity'
+import { Nauk } from 'src/nauk/entities/nauk.entity'
 import { Transaction } from 'src/transaction/entities/transaction.entity'
 import {
   Column,
@@ -29,6 +30,10 @@ export class User {
     onDelete: 'CASCADE',
   })
   transactions: Transaction[]
+  @OneToMany(() => Nauk, (nauk) => nauk.user, {
+    onDelete: 'CASCADE',
+  })
+  nauk: Transaction[]
 
   @CreateDateColumn()
   createdAt: Date

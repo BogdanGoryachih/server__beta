@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { NaukModule } from './nauk/nauk.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     CategoryModule,
     AuthModule,
     TransactionModule,
+    NaukModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -29,6 +31,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       }),
       inject: [ConfigService],
     }),
+    NaukModule,
   ],
   controllers: [AppController],
   providers: [AppService],
